@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "http-server",
-     "test": "casperjs test tests"
+     "test": "casperjs test tests/aa.js"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,9 @@
-var config = require('./config.json');
-console.log('URL:', config.url);
+var config = require('../config.json');
+// console.log('URL:', config.url);
 
 var phantomcss = require('phantomcss');
 
+// start a casper test
 casper.test.begin('Tags', function(test) {
 
   phantomcss.init({
@@ -10,13 +11,24 @@ casper.test.begin('Tags', function(test) {
   });
 
   // open page
-  casper.start();
+  casper.start(config.url);
 
-  casper.thenOpen(config.url, function() {
-    console.log("URL open");
+  // set your preferred view port size
+  casper.viewport(1024, 768);
+
+  casper.then(function() {
+      // take the screenshot of the whole body element and save it under "body.png". The first parameter is actually a CSS selector
+      phantomcss.screenshot('body', 'body');
   });
- 
+
+  casper.then(function now_check_the_screenshots() {
+    // compare screenshots
+    phantomcss.compareAll();
+  });
+
+  // run tests
+  casper.run(function() {
+    console.log('\nTHE END.');
+    casper.test.done();
+  });
 });
-
-
-
