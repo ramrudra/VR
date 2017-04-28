@@ -12,7 +12,7 @@ casper.test.begin('Tags', function(test) {
   // open page
   casper.start();
 
-  casper.thenOpen('https://www.facebook.com', function() {
+  casper.thenOpen(config.url, function() {
     console.log("URL open");
   });
  
